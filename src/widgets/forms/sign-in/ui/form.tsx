@@ -49,12 +49,12 @@ const SignInForm = () => {
         onChange={(value) => {
           const asYouType = new AsYouType();
           asYouType.input(value as E164Number);
-          const phoneCountry = asYouType.getCountry();
+          const phoneCountry = asYouType.getCountry() ?? "";
 
           setValue(fields.phone, value);
 
           if (country !== phoneCountry) {
-            setValue(fields.country, phoneCountry ?? "");
+            setValue(fields.country, phoneCountry);
             forceUpdate();
           }
         }}
