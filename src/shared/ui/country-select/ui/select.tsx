@@ -3,7 +3,7 @@ import { type SelectProps, Select } from "@mantine/core";
 
 import { countriesGateway } from "@shared/api/countries";
 
-import type { CountrySelectItem } from "../model";
+import type { CountrySelectItem } from "../model/types";
 import { CountryItem } from "./item";
 
 type CountrySelectProps = {
@@ -43,6 +43,7 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
       }
       data={data}
       searchable
+      withinPortal
       {...props}
     />
   );

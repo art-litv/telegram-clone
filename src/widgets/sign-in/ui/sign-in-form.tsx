@@ -10,8 +10,13 @@ import { PhoneInput } from "@shared/ui/phone-input";
 
 import { fields, schema } from "../model/schema";
 
-const SignInForm = () => {
+type SignInFormProps = {
+  onSubmit: () => void;
+};
+
+export const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
   const {
+    setFocus,
     getValues,
     setValue,
     register,
@@ -29,7 +34,8 @@ const SignInForm = () => {
     <form
       className="mt-6 flex w-full flex-col gap-2"
       onSubmit={handleSubmit((data) => {
-        console.log(data);
+        // TODO
+        onSubmit();
       })}
     >
       <CountrySelect
@@ -52,6 +58,8 @@ const SignInForm = () => {
           const phoneCountry = asYouType.getCountry() ?? "";
 
           setValue(fields.phone, value);
+          //focus phoneRef
+          setFocus(fields.country);
 
           if (country !== phoneCountry) {
             setValue(fields.country, phoneCountry);
@@ -72,5 +80,3 @@ const SignInForm = () => {
     </form>
   );
 };
-
-export default SignInForm;
